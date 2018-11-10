@@ -2,12 +2,11 @@ package com.malherbe.cocktailcore.resource.model.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-
-;
+import java.util.List;
 
 @Entity
-@Table(name = "c_Bottle")
-public class BottleEntity implements Serializable {
+@Table(name = "drink")
+public class DrinkEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,11 +27,14 @@ public class BottleEntity implements Serializable {
     @Column(name = "pin")
     private Integer pin;
 
+    @OneToMany(mappedBy = "drink", cascade = CascadeType.ALL)
+    private List<MeasureEntity> measureEntityList;
+
     public Long getId() {
         return id;
     }
 
-    public BottleEntity setId(Long id) {
+    public DrinkEntity setId(Long id) {
         this.id = id;
         return this;
     }
@@ -41,7 +43,7 @@ public class BottleEntity implements Serializable {
         return name;
     }
 
-    public BottleEntity setName(String name) {
+    public DrinkEntity setName(String name) {
         this.name = name;
         return this;
     }
@@ -50,7 +52,7 @@ public class BottleEntity implements Serializable {
         return picture;
     }
 
-    public BottleEntity setPicture(String picture) {
+    public DrinkEntity setPicture(String picture) {
         this.picture = picture;
         return this;
     }
@@ -59,7 +61,7 @@ public class BottleEntity implements Serializable {
         return capacity;
     }
 
-    public BottleEntity setCapacity(Double capacity) {
+    public DrinkEntity setCapacity(Double capacity) {
         this.capacity = capacity;
         return this;
     }
@@ -68,7 +70,7 @@ public class BottleEntity implements Serializable {
         return remainingCapacity;
     }
 
-    public BottleEntity setRemainingCapacity(Double remainingCapacity) {
+    public DrinkEntity setRemainingCapacity(Double remainingCapacity) {
         this.remainingCapacity = remainingCapacity;
         return this;
     }
@@ -77,8 +79,17 @@ public class BottleEntity implements Serializable {
         return pin;
     }
 
-    public BottleEntity setPin(Integer pin) {
+    public DrinkEntity setPin(Integer pin) {
         this.pin = pin;
+        return this;
+    }
+
+    public List<MeasureEntity> getMeasureEntityList() {
+        return measureEntityList;
+    }
+
+    public DrinkEntity setMeasureEntityList(List<MeasureEntity> measureEntityList) {
+        this.measureEntityList = measureEntityList;
         return this;
     }
 }
