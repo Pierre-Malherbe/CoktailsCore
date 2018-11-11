@@ -8,14 +8,17 @@ public class DrinkService {
     public void ActivateDrink(String pinSelected) throws InterruptedException {
         final GpioController gpio = GpioFactory.getInstance();
         final GpioPinDigitalOutput pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_13, PinState.LOW);
-        pin.setState(true);
+        pin.high();
+        System.out.println("Pin High");
         Thread.sleep(2000);
-        pin.setState(false);
+        // turn off and wait 2 seconds
+        pin.low();
+        System.out.println("Pin Low");
         Thread.sleep(2000);
-        pin.setState(true);
-        Thread.sleep(2000);
-        pin.setState(false);
-        Thread.sleep(2000);
+
+        // turn pin on for 2 second and then off
+        System.out.println("Pin High for 2 seconds");
+        pin.pulse(2000, true);
         gpio.shutdown();
     }
 
