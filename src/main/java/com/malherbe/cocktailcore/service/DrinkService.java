@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 public class DrinkService {
     public void ActivateDrink(String pinSelected) throws InterruptedException {
         final GpioController gpio = GpioFactory.getInstance();
-        final GpioPinDigitalOutput pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_13, PinState.HIGH);
+        final GpioPinDigitalOutput pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_10, PinState.HIGH);
         pin.setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
         System.out.println("Pin High");
         Thread.sleep(2000);
